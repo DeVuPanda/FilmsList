@@ -1,0 +1,100 @@
+﻿@page "/"
+
+<div class="container">
+    <div class="row">
+        @foreach (var movie in Movies)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@movie.ImageUrl" class="card-img-top" alt="@movie.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">
+                            Rating:
+                            <span class="badge @GetRatingClass(movie.Rating)">
+                                @movie.Rating
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Movie> Movies = new List<Movie>
+    {
+        new Movie
+        {
+            Title = "Pacific Rim",
+            Rating = 4.8,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTY3MTI5NjQ4Nl5BMl5BanBnXkFtZTcwOTU1OTU0OQ@@._V1_FMjpg_UX1000_.jpg"
+        },
+        new Movie
+        {
+            Title = "Pacific Rim 2",
+            Rating = 4.0,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BMjI3Nzg0MTM5NF5BMl5BanBnXkFtZTgwOTE2MTgwNTM@._V1_FMjpg_UX1000_.jpg"
+        },
+        new Movie
+        {
+            Title = "X-MAN Apocalypse",
+            Rating = 4.5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BNjVhNWY3NjItNmZjOS00NTU3LWFiZTctNzdjNGM5Y2Y0MDUwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        },
+        new Movie
+        {
+            Title = "Jumanji",
+            Rating = 5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BYWFjODExZWEtYzIwYS00M2YwLTk4YTktNDQ5ZmVmOThiNmI1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        },
+        new Movie
+        {
+            Title = "Gran turismo",
+            Rating = 5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BMjA0N2YyNmYtZDk4Ny00ODE2LThmZWQtNGJiMDk0YzhiNzE5XkEyXkFqcGc@._V1_.jpg"
+        },
+        new Movie
+        {
+            Title = "Death note",
+            Rating = 5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BYTgyZDhmMTEtZDFhNi00MTc4LTg3NjUtYWJlNGE5Mzk2NzMxXkEyXkFqcGc@._V1_.jpg"
+        },
+        new Movie
+        {
+            Title = "Black clover",
+            Rating = 5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BZmZkZjNhMWMtM2U0Mi00MjdlLTk3NmMtMTMwZjgwOTJmODMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        },
+        new Movie
+        {
+            Title = "Solo leveling",
+            Rating = 5,
+            ImageUrl = "https://i.redd.it/l3vksr8emyic1.jpeg"
+        },
+        new Movie
+        {
+            Title = "Eminence in shadow",
+            Rating = 5,
+            ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDFmMWJlMWYtMDFkNi00OWViLTkzOGEtNDI0YWNmM2M5MzI5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        }
+    };
+
+    private string GetRatingClass(double rating)
+    {
+        return rating switch
+        {
+            >= 4.5 => "bg-success text-white",
+            >= 4.0 => "bg-warning text-dark",
+            _ => "bg-danger text-white"
+        };
+    }
+
+    private class Movie
+    {
+        public string Title { get; set; }
+        public double Rating { get; set; }
+        public string ImageUrl { get; set; }
+    }
+}
